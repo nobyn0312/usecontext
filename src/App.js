@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+// ①import
+import { createContext ,useContext,useState } from 'react';
+import ComponentA from './components/ComponentA'
+
+//②定義
+export const UserCount = createContext()
 
 function App() {
+      // useStateでカウントの初期値をセット
+      const [count,setCount] =useState(100)
+      // valueとして渡す値をセット
+      const value ={
+        count,
+        setCount
+      };
+      // 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div style={{ textAlign: 'center' }}>
+      <h1>Learn useContext</h1>
+      {/* ③.Providerで使う */}
+      <UserCount.Provider value={value}>
+        <ComponentA/>
+
+      </UserCount.Provider>    </div>
   );
 }
 
